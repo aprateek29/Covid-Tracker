@@ -1,0 +1,29 @@
+.table {
+  margin-top: 20px;
+  overflow: scroll;
+  color: #000;
+  background-color: #ddd;
+  height: 400px;
+}
+
+.table::-webkit-scrollbar {
+  display: none;
+}
+
+.table div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.table span.first {
+  padding: 0.5rem;
+  border: none;
+}
+
+.table div:nth-of-type(odd) {
+  background-color: #121212;
+  color: white;
+}
