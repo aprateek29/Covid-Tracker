@@ -1,6 +1,6 @@
 # Covid-Tracker
 
-Download the apk from given link.
+View the live version from given link.
 https://prateek-covid-tracker.netlify.app/
 
 * **Select from all the major cities of the world** -> **India**, **Australia**, **USA**, **Russia**, **France**, **United Kingdom** more.
