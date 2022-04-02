@@ -1,76 +1,90 @@
-# React COVID Tracker
+# Covid-Tracker
 
-### Want to join the BEST JavaScript Course on the planet and learn how to build the projects like Covid Tracker with JavaScript, NodeJS, and MongoDB?
+Download the apk from given link.
+https://prateek-covid-tracker.netlify.app/
 
-Check out our `Profit With JavaScript Course`    :point_down: 
+* **Select from all the major cities of the world** -> **India**, **Australia**, **USA**, **Russia**, **France**, **United Kingdom** more.
+* **Tabbed View** for flawless transitions between the screens.
+* **Chart.js** for cool and dynamic charts.
+* **Google Map** which shows the how much corona virus has affected a particular area.
 
-[Click Here](https://cleverprogrammer.unstacksite.com/pwj?utm_source=github&utm_medium=repo&utm_content=20-july-live-sonny-naz-covid-19-tracker&utm_campaign=live-everyday&utm_term=warm)
+## About Sonny Sangha
 
-Made with :heart: by [Naz](https://www.instagram.com/nazdumanskyy/) & [Sonny](https://www.instagram.com/ssssangha/)
+This project is inspired from his project.
+He has been coding for over 10 years now. As a Full Stack developer, he has worked both with startups and large corporations to help build & scale their companies. He has now trained thousand's of developers across the globe. Through live coaching sessions on Youtube, He has accumulated several MILLION's of views where he demonstrate how to apply developer skills in a range of cool builds and challenges.
 
-## Available Scripts
+His Webiste - https://www.papareact.com/
 
-In the project directory, you can run:
+## Usage
 
-### `npm start`
+### JS Applications
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is a React Js. You can install the dependencies and run the app.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<details><summary><b>Show instructions</b></summary>
 
-### `npm test`
+1. Install the dependencies:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    ```sh
+    $ npm install 
+    ```
 
-### `npm run build`
+2. Run the app in the android.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ```sh
+    $ npm start
+    ```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+3. This will start building the project and run the app in browser at localhost:3000.
+  
+</details>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* `react-chartjs-2` : "^2.9.0",  React wrapper for Chart.js 2 Open for PRs and contributions!
+* `chart.js `: "^2.9.3",  Simple yet flexible JavaScript charting for designers & developers
+* `@material-ui/core` : "^4.11.0" MUI provides a robust, customizable, and accessible library of foundational and advanced components
+* `axios` : "^0.25.0"  Promise based HTTP client for the browser and node.js
+* `react-native-pager-view` : "5.0.12"  For horizontal swipe screen transistion
+* `react-native-snap-carousel` : "^3.9.1" For transition between screens.
+* `react-native-tab-view` : "^3.0.1"  Dependency for pager-view
+* `react-native-web` : "~0.13.12"  Dependency for pager-view
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## JS API
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```js
+fetch("https://disease.sh/v3/covid-19/all")
+      .then((response) => response.json())
+      .then((data) => {
+        setCountryInfo(data);
+      });
+    
+    
+fetch("https://disease.sh/v3/covid-19/countries")
+  .then((response) => response.json())
+  .then((data) => {
+      const countries = data.map((country) => ({
+        name: country.country,
+        value: country.countryInfo.iso2,
+      }));
+      let sortedData = sortData(data);
+      setCountries(countries);
+      setMapCountries(data);
+      setTableData(sortedData);
+    });
+    
+    
+const url =
+  countryCode === "worldwide"
+    ? "https://disease.sh/v3/covid-19/all"
+    : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+  await fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      setInputCountry(countryCode);
+      setCountryInfo(data);
+      setMapCenter([data?.countryInfo?.lat, data.countryInfo.long]);
+      setMapZoom(1);
+    });
